@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const userGroup_controller_1 = require("../controllers/userGroup.controller");
+const validateRequest_1 = require("../middlewares/validateRequest");
+const userGroup_valudation_1 = require("../validations/userGroup.valudation");
+router.get("/", userGroup_controller_1.getAllUserGroups);
+router.get("/:id", userGroup_controller_1.getUserGroup);
+router.post("/", (0, validateRequest_1.validateRequest)(userGroup_valudation_1.createUserGroupSchema), userGroup_controller_1.createUserGroup);
+router.put("/:id", (0, validateRequest_1.validateRequest)(userGroup_valudation_1.createUserGroupSchema), userGroup_controller_1.updateUserGroup);
+router.delete("/:id", userGroup_controller_1.deleteUserGroup);
+exports.default = router;

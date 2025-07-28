@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const kafedra_controller_1 = require("../controllers/kafedra.controller");
+const validateRequest_1 = require("../middlewares/validateRequest");
+const kafedra_validation_1 = require("../validations/kafedra.validation");
+const authorize_1 = require("../middlewares/authorize");
+router.get("/", kafedra_controller_1.getAllKafedras);
+router.get("/:id", kafedra_controller_1.getKafedra);
+router.post("/", authorize_1.isAuthenticated, (0, validateRequest_1.validateRequest)(kafedra_validation_1.createKafedraSchema), kafedra_controller_1.createKafedra);
+router.put("/:id", authorize_1.isAuthenticated, (0, validateRequest_1.validateRequest)(kafedra_validation_1.updateKafedraSchema), kafedra_controller_1.updateKafedra);
+router.delete("/:id", authorize_1.isAuthenticated, kafedra_controller_1.deleteKafedra);
+exports.default = router;

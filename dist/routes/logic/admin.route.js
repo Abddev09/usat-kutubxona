@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const Admin_1 = require("../../logic/Admin");
+const checkPermission_1 = require("../../middlewares/checkPermission");
+const authorize_1 = require("../../middlewares/authorize");
+router.post("/log", Admin_1.LoginPage);
+router.post("/register", authorize_1.isAuthenticated, (0, checkPermission_1.checkDynamicPermission)(), Admin_1.RegisterPage);
+router.get("/all-users", authorize_1.isAuthenticated, (0, checkPermission_1.checkDynamicPermission)(), Admin_1.getAllUsers);
+router.get("/user/:id", authorize_1.isAuthenticated, (0, checkPermission_1.checkDynamicPermission)(), Admin_1.getUser);
+router.put("/user/:id", authorize_1.isAuthenticated, (0, checkPermission_1.checkDynamicPermission)(), Admin_1.updateUser);
+router.delete("/user/:id", authorize_1.isAuthenticated, (0, checkPermission_1.checkDynamicPermission)(), Admin_1.deleteUser);
+exports.default = router;

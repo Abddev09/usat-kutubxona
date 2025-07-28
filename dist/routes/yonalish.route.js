@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const yonalish_controller_1 = require("../controllers/yonalish.controller");
+const validateRequest_1 = require("../middlewares/validateRequest");
+const yonalish_validation_1 = require("../validations/yonalish.validation");
+const authorize_1 = require("../middlewares/authorize");
+const router = (0, express_1.Router)();
+router.get("/", yonalish_controller_1.getAllYonalish);
+router.get("/:id", yonalish_controller_1.getYonalish);
+router.post("/", authorize_1.isAuthenticated, (0, validateRequest_1.validateRequest)(yonalish_validation_1.createYonalishSchema), yonalish_controller_1.createYonalish);
+router.put("/:id", authorize_1.isAuthenticated, (0, validateRequest_1.validateRequest)(yonalish_validation_1.updateYonalishSchema), yonalish_controller_1.updateYonalish);
+router.delete("/:id", authorize_1.isAuthenticated, yonalish_controller_1.deleteYonalish);
+exports.default = router;

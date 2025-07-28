@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const permission_controller_1 = require("../controllers/permission.controller");
+const validateRequest_1 = require("../middlewares/validateRequest");
+const permission_validation_1 = require("../validations/permission.validation");
+const router = (0, express_1.Router)();
+router.get("/", permission_controller_1.getAllPermissions);
+router.get("/:id", permission_controller_1.getPermission);
+router.post("/", (0, validateRequest_1.validateRequest)(permission_validation_1.createPermissionSchema), permission_controller_1.createPermission);
+router.put("/:id", (0, validateRequest_1.validateRequest)(permission_validation_1.createPermissionSchema), permission_controller_1.updatePermission);
+router.delete("/:id", permission_controller_1.deletePermission);
+exports.default = router;

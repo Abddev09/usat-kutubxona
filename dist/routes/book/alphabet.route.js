@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const alphabet_controller_1 = require("../../controllers/book/alphabet.controller");
+const validateRequest_1 = require("../../middlewares/validateRequest");
+const alphabet_validation_1 = require("../../validations/alphabet.validation");
+router.post("/", (0, validateRequest_1.validateRequest)(alphabet_validation_1.createAlphabetSchema), alphabet_controller_1.createAlphabet);
+router.get("/", alphabet_controller_1.getAllAlphabets);
+router.get("/:id", alphabet_controller_1.getAlphabet);
+router.put("/:id", (0, validateRequest_1.validateRequest)(alphabet_validation_1.updateAlphabetSchema), alphabet_controller_1.updateAlphabet);
+router.delete("/:id", alphabet_controller_1.deleteAlphabet);
+exports.default = router;

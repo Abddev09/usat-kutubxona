@@ -1,0 +1,23 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auther_controller_1 = require("../controllers/book/auther.controller");
+const category_controller_1 = require("../controllers/book/category.controller");
+const kafedra_controller_1 = require("../controllers/kafedra.controller");
+const bookItem_controller_1 = require("../controllers/book/bookItem.controller");
+const login_controller_1 = require("../website/login.controller");
+const book_controller_1 = require("../controllers/book/book.controller");
+const userOrder_controller_1 = require("../controllers/userOrder.controller");
+const router = (0, express_1.Router)();
+router.get("/authers", auther_controller_1.getAllAuthers);
+router.get("/categories", category_controller_1.getAllCategories);
+router.get("/kafedras", kafedra_controller_1.getAllKafedras);
+router.get("/book-items", bookItem_controller_1.getAllBookItems);
+router.post("/login", login_controller_1.siteLogin);
+router.get("/books", book_controller_1.getAllBooks);
+router.post("/user-order", userOrder_controller_1.createUserOrder);
+router.get("/alluser-order", userOrder_controller_1.getAllUserOrders);
+router.get("/user-order/:id", userOrder_controller_1.getUserOrdersByUserId);
+router.get("/categories", category_controller_1.getAllCategories);
+// userOrder
+exports.default = router;

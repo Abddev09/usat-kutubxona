@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const BookCategoryKafedra_controller_1 = require("../controllers/BookCategoryKafedra.controller");
+const router = (0, express_1.Router)();
+router.get("/", BookCategoryKafedra_controller_1.getAllBookCategoryKafedras);
+router.get("/:id", BookCategoryKafedra_controller_1.getBookCategoryKafedra);
+router.post("/", BookCategoryKafedra_controller_1.createBookCategoryKafedra);
+router.put("/:id", BookCategoryKafedra_controller_1.updateBookCategoryKafedra);
+router.delete("/:id", BookCategoryKafedra_controller_1.deleteBookCategoryKafedra);
+router.get("/:id/kafedralar", BookCategoryKafedra_controller_1.getCategoryKafedralar);
+router.get("/:categoryId/kafedralar/:kafedraId/books", BookCategoryKafedra_controller_1.getBooksByCategoryAndKafedra);
+exports.default = router;

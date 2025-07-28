@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const language_controller_1 = require("../../controllers/book/language.controller");
+const validateRequest_1 = require("../../middlewares/validateRequest");
+const language_validation_1 = require("../../validations/language.validation");
+const authorize_1 = require("../../middlewares/authorize");
+router.post("/", authorize_1.isAuthenticated, (0, validateRequest_1.validateRequest)(language_validation_1.createLanguageSchema), language_controller_1.createLanguage);
+router.get("/", language_controller_1.getAllLanguages);
+router.get("/:id", language_controller_1.getLanguage);
+router.put("/:id", authorize_1.isAuthenticated, (0, validateRequest_1.validateRequest)(language_validation_1.updateLanguageSchema), language_controller_1.updateLanguage);
+router.delete("/:id", language_controller_1.deleteLanguage);
+exports.default = router;

@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const groupPermisson_controller_1 = require("../controllers/groupPermisson.controller");
+const validateRequest_1 = require("../middlewares/validateRequest");
+const groupPermission_validation_1 = require("../validations/groupPermission.validation");
+router.get("/", groupPermisson_controller_1.getAllGroupPermissions);
+router.get("/:id", groupPermisson_controller_1.getGroupPermission);
+router.post("/", (0, validateRequest_1.validateRequest)(groupPermission_validation_1.createGroupPermissionSchema), groupPermisson_controller_1.createGroupPermission);
+router.put("/:id", (0, validateRequest_1.validateRequest)(groupPermission_validation_1.createGroupPermissionSchema), groupPermisson_controller_1.updateGroupPermission);
+router.delete("/:id", groupPermisson_controller_1.deleteGroupPermission);
+router.post("/assign", groupPermisson_controller_1.assignPermissionsToGroup);
+exports.default = router;
